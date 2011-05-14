@@ -42,7 +42,7 @@ vasprintf(str, fmt, ap)
 	__va_list ap;
 {
 	int ret;
-	FILE f = FAKE_FILE;
+	FAKE_FILE(f);
 
 	f._flags = __SWR | __SSTR | __SALC;
 	f._bf._base = f._p = (unsigned char *)malloc(128);

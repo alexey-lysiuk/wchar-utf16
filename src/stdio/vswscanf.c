@@ -62,7 +62,7 @@ vswscanf(const wchar_t * __restrict str, const wchar_t * __restrict fmt,
 {
 	static const mbstate_t initial;
 	mbstate_t mbs;
-	FILE f = FAKE_FILE;
+	FAKE_FILE(f);
 	char *mbstr;
 	size_t mlen;
 	int r;

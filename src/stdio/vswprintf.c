@@ -45,7 +45,7 @@ vswprintf(wchar_t * __restrict s, size_t n, const wchar_t * __restrict fmt,
 {
 	static const mbstate_t initial;
 	mbstate_t mbs;
-	FILE f = FAKE_FILE;
+	FAKE_FILE(f);
 	char *mbp;
 	int ret, sverrno;
 	size_t nwc;

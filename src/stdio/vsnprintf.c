@@ -47,7 +47,7 @@ vsnprintf(char * __restrict str, size_t n, const char * __restrict fmt,
 	size_t on;
 	int ret;
 	char dummy[2];
-	FILE f = FAKE_FILE;
+	FAKE_FILE(f);
 
 	on = n;
 	if (n != 0)

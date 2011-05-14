@@ -48,7 +48,7 @@ snprintf(char * __restrict str, size_t n, char const * __restrict fmt, ...)
 	size_t on;
 	int ret;
 	va_list ap;
-	FILE f = FAKE_FILE;
+	FAKE_FILE(f);
 
 	on = n;
 	if (n != 0)

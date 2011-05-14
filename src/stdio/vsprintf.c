@@ -44,7 +44,7 @@ int
 vsprintf(char * __restrict str, const char * __restrict fmt, __va_list ap)
 {
 	int ret;
-	FILE f = FAKE_FILE;
+	FAKE_FILE(f);
 
 	f._flags = __SWR | __SSTR;
 	f._bf._base = f._p = (unsigned char *)str;

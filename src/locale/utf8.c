@@ -35,8 +35,6 @@ __FBSDID("$FreeBSD$");
 #include <wchar.h>
 #include "mblocal.h"
 
-extern int __mb_sb_limit;
-
 static size_t	_UTF8_mbrtowc(wchar_t * __restrict, const char * __restrict,
 		    size_t, mbstate_t * __restrict);
 static int	_UTF8_mbsinit(const mbstate_t *);
@@ -64,13 +62,7 @@ _UTF8_init(_RuneLocale *rl)
 	__mbsnrtowcs = _UTF8_mbsnrtowcs;
 	__wcsnrtombs = _UTF8_wcsnrtombs;
 	_CurrentRuneLocale = rl;
-	__mb_cur_max = 6;
-	/*
-	 * UCS-4 encoding used as the internal representation, so
-	 * slots 0x0080-0x00FF are occuped and must be excluded
-	 * from the single byte ctype by setting the limit.
-	 */
-	__mb_sb_limit = 128;
+	__mb_cur_max = 3;
 
 	return (0);
 }
@@ -136,28 +128,10 @@ _UTF8_mbrtowc(wchar_t * __restrict pwc, const char * __restrict s, size_t n,
 			mask = 0x1f;
 			want = 2;
 			lbound = 0x80;
-		} else if ((ch & 0xf0) == 0xe0) {
+		} else {
 			mask = 0x0f;
 			want = 3;
 			lbound = 0x800;
-		} else if ((ch & 0xf8) == 0xf0) {
-			mask = 0x07;
-			want = 4;
-			lbound = 0x10000;
-		} else if ((ch & 0xfc) == 0xf8) {
-			mask = 0x03;
-			want = 5;
-			lbound = 0x200000;
-		} else if ((ch & 0xfe) == 0xfc) {
-			mask = 0x01;
-			want = 6;
-			lbound = 0x4000000;
-		} else {
-			/*
-			 * Malformed input; input is not UTF-8.
-			 */
-			errno = EILSEQ;
-			return ((size_t)-1);
 		}
 	} else {
 		want = us->want;
@@ -376,7 +350,7 @@ _UTF8_wcsnrtombs(char * __restrict dst, const wchar_t ** __restrict src,
 
 	if (dst == NULL) {
 		while (nwc-- > 0) {
-			if (0 <= *s && *s < 0x80)
+			if (*s < 0x80)
 				/* Fast path for plain ASCII characters. */
 				nb = 1;
 			else if ((nb = _UTF8_wcrtomb(buf, *s, ps)) ==
@@ -392,7 +366,7 @@ _UTF8_wcsnrtombs(char * __restrict dst, const wchar_t ** __restrict src,
 	}
 
 	while (len > 0 && nwc-- > 0) {
-		if (0 <= *s && *s < 0x80) {
+		if (*s < 0x80) {
 			/* Fast path for plain ASCII characters. */
 			nb = 1;
 			*dst = *s;
@@ -427,3 +401,21 @@ _UTF8_wcsnrtombs(char * __restrict dst, const wchar_t ** __restrict src,
 	*src = s;
 	return (nbytes);
 }
+
+/*
+ * From none.c
+ * The original file is excluded from compilation 
+ * so the following global symbols are moved here
+ * and initialized accordingly
+ */
+
+size_t (*__mbrtowc)(wchar_t * __restrict, const char * __restrict, size_t,
+					mbstate_t * __restrict) = _UTF8_mbrtowc;
+int (*__mbsinit)(const mbstate_t *) = _UTF8_mbsinit;
+size_t (*__mbsnrtowcs)(wchar_t * __restrict, const char ** __restrict,
+					   size_t, size_t, mbstate_t * __restrict) = _UTF8_mbsnrtowcs;
+size_t (*__wcrtomb)(char * __restrict, wchar_t, mbstate_t * __restrict) =
+_UTF8_wcrtomb;
+size_t (*__wcsnrtombs)(char * __restrict, const wchar_t ** __restrict,
+					   size_t, size_t, mbstate_t * __restrict) = _UTF8_wcsnrtombs;
+

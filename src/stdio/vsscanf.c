@@ -55,7 +55,7 @@ int
 vsscanf(const char * __restrict str, const char * __restrict fmt,
 	__va_list ap)
 {
-	FILE f = FAKE_FILE;
+	FAKE_FILE(f);
 
 	f._flags = __SRD;
 	f._bf._base = f._p = (unsigned char *)str;

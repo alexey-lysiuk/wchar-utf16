@@ -751,7 +751,7 @@ parsefloat(FILE *fp, wchar_t *buf, wchar_t *end)
 	commit = buf - 1;
 	c = WEOF;
 	for (p = buf; p < end; ) {
-		if ((c = __fgetwc(fp)) == WEOF)
+		if ((c = __fgetwc(fp)) == (wchar_t)WEOF)
 			break;
 reswitch:
 		switch (state) {
@@ -870,7 +870,7 @@ reswitch:
 	}
 
 parsedone:
-	if (c != WEOF)
+	if (c != (wchar_t)WEOF)
 		__ungetwc(c, fp);
 	while (commit < --p)
 		__ungetwc(*p, fp);

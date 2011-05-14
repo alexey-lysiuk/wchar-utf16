@@ -37,6 +37,7 @@
 #include <pthread.h>
 #include <string.h>
 #include <wchar.h>
+#include <stdio.h>
 
 /*
  * Information local to this implementation of stdio,
@@ -65,19 +66,31 @@ extern void	_cleanup(void);
 extern void	__smakebuf(FILE *);
 extern int	__swhatbuf(FILE *, size_t *, int *);
 extern int	_fwalk(int (*)(FILE *));
-extern int	__svfscanf(FILE *, const char *, __va_list);
+extern int	__svfscanf(FILE *, const char *, va_list);
 extern int	__swsetup(FILE *);
 extern int	__sflags(const char *, int *);
 extern int	__ungetc(int, FILE *);
 extern wint_t	__ungetwc(wint_t, FILE *);
-extern int	__vfprintf(FILE *, const char *, __va_list);
-extern int	__vfscanf(FILE *, const char *, __va_list);
-extern int	__vfwprintf(FILE *, const wchar_t *, __va_list);
+extern int	__vfprintf(FILE *, const char *, va_list);
+extern int	__vfscanf(FILE *, const char *, va_list);
+extern int	__vfwprintf(FILE *, const wchar_t *, va_list);
 extern int	__vfwscanf(FILE * __restrict, const wchar_t * __restrict,
-		    __va_list);
+		    va_list);
 extern size_t	__fread(void * __restrict buf, size_t size, size_t count,
 		FILE * __restrict fp);
 extern int	__sdidinit;
+
+
+/* hold a buncha junk that would grow the ABI */
+struct __sFILEX {
+	unsigned char	*_up;	/* saved _p when _p is doing ungetc data */
+	pthread_mutex_t	fl_mutex;	/* used for MT-safety */
+	pthread_t	fl_owner;	/* current owner */
+	int		fl_count;	/* recursive lock count */
+	int		orientation:2;	/* orientation for fwide() */
+	int		counted:1;	/* stream counted against STREAM_MAX */
+	mbstate_t	mbstate;	/* multibyte conversion state */
+};
 
 
 /*
@@ -112,16 +125,15 @@ extern int	__sdidinit;
 /*
  * Structure initializations for 'fake' FILE objects.
  */
-#define	FAKE_FILE {				\
-	._file = -1,				\
-	._fl_mutex = PTHREAD_MUTEX_INITIALIZER, \
-}
+#define	FAKE_FILE( VAR ) \
+	struct __sFILEX fake_file_extra = { .fl_mutex = PTHREAD_MUTEX_INITIALIZER }; \
+	FILE VAR = { ._file = -1, ._extra = &fake_file_extra }
 
 /*
  * Set the orientation for a stream. If o > 0, the stream has wide-
  * orientation. If o < 0, the stream has byte-orientation.
  */
 #define	ORIENT(fp, o)	do {				\
-	if ((fp)->_orientation == 0)			\
-		(fp)->_orientation = (o);		\
+	if ((fp)->_extra->orientation == 0)		\
+		(fp)->_extra->orientation = (o);	\
 } while (0)

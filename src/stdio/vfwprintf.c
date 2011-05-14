@@ -208,7 +208,7 @@ static int
 __sbprintf(FILE *fp, const wchar_t *fmt, va_list ap)
 {
 	int ret;
-	FILE fake;
+	FAKE_FILE(fake);
 	unsigned char buf[BUFSIZ];
 
 	/* XXX This is probably not needed. */
@@ -220,8 +220,8 @@ __sbprintf(FILE *fp, const wchar_t *fmt, va_list ap)
 	fake._file = fp->_file;
 	fake._cookie = fp->_cookie;
 	fake._write = fp->_write;
-	fake._orientation = fp->_orientation;
-	fake._mbstate = fp->_mbstate;
+	fake._extra->orientation = fp->_extra->orientation;
+	fake._extra->mbstate = fp->_extra->mbstate;
 
 	/* set up the buffer */
 	fake._bf._base = fake._p = buf;

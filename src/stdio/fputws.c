@@ -45,7 +45,6 @@ fputws(const wchar_t * __restrict ws, FILE * __restrict fp)
 	char buf[BUFSIZ];
 	struct __suio uio;
 	struct __siov iov;
-	const wchar_t *wsp;
 
 	FLOCKFILE(fp);
 	ORIENT(fp, 1);
@@ -55,9 +54,8 @@ fputws(const wchar_t * __restrict ws, FILE * __restrict fp)
 	uio.uio_iovcnt = 1;
 	iov.iov_base = buf;
 	do {
-		wsp = ws;
-		nbytes = __wcsnrtombs(buf, &wsp, SIZE_T_MAX, sizeof(buf),
-		    &fp->_mbstate);
+		nbytes = __wcsnrtombs(buf, (const wchar_t**)&ws, SIZE_T_MAX, sizeof(buf),
+		    &fp->_extra->mbstate);
 		if (nbytes == (size_t)-1)
 			goto error;
 		iov.iov_len = uio.uio_resid = nbytes;
