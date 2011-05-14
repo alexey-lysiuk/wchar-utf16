@@ -113,8 +113,16 @@
 		8A2E3E5F13782BE8001884EA /* wmemset.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D5013781E72001884EA /* wmemset.c */; };
 		8A2E3E6413782C0B001884EA /* libwchar_utf16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC046055464E500DB518D /* libwchar_utf16.a */; };
 		8A2E3E7313782CBD001884EA /* fread.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3CAC13781E72001884EA /* fread.c */; };
+		8A85E0A6137EA9C2001A817C /* nextwctype.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3C6813781E72001884EA /* nextwctype.c */; };
+		8A85E0A7137EA9DD001A817C /* wctrans.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3C8713781E72001884EA /* wctrans.c */; };
+		8A85E0A9137EA9DF001A817C /* wcwidth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3C8913781E72001884EA /* wcwidth.c */; };
+		8A85E0BB137EAA7A001A817C /* wcswidth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D4A13781E72001884EA /* wcswidth.c */; };
+		8A85E0BE137EAA94001A817C /* wcslcpy.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D3E13781E72001884EA /* wcslcpy.c */; };
+		8A85E0BF137EAA96001A817C /* wcslcat.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D3D13781E72001884EA /* wcslcat.c */; };
 		8AF0F886137E9F4A005FC4B3 /* mblen.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3C5E13781E72001884EA /* mblen.c */; };
 		8AF0F8E1137EA7E8005FC4B3 /* simple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D5213781E72001884EA /* simple.cpp */; };
+		8AF0F8E4137EA907005FC4B3 /* wcswidth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D4A13781E72001884EA /* wcswidth.c */; };
+		8AF0F8E5137EA907005FC4B3 /* wcwidth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3C8913781E72001884EA /* wcwidth.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -452,13 +460,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A2E3E6413782C0B001884EA /* libwchar_utf16.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D289987405E68DCB004EDB86 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -868,16 +869,6 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		D2AAC043055464E500DB518D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		8A2E3D5513781E99001884EA /* test_simple */ = {
 			isa = PBXNativeTarget;
@@ -900,9 +891,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB91EB08733DB70010E9CD /* Build configuration list for PBXNativeTarget "wchar_utf16" */;
 			buildPhases = (
-				D2AAC043055464E500DB518D /* Headers */,
 				D2AAC044055464E500DB518D /* Sources */,
-				D289987405E68DCB004EDB86 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -944,6 +933,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8AF0F8E1137EA7E8005FC4B3 /* simple.cpp in Sources */,
+				8AF0F8E4137EA907005FC4B3 /* wcswidth.c in Sources */,
+				8AF0F8E5137EA907005FC4B3 /* wcwidth.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1057,6 +1048,12 @@
 				8A2E3E5F13782BE8001884EA /* wmemset.c in Sources */,
 				49FAA42E137D238E00DD899B /* fscanf.c in Sources */,
 				8AF0F886137E9F4A005FC4B3 /* mblen.c in Sources */,
+				8A85E0A6137EA9C2001A817C /* nextwctype.c in Sources */,
+				8A85E0A7137EA9DD001A817C /* wctrans.c in Sources */,
+				8A85E0A9137EA9DF001A817C /* wcwidth.c in Sources */,
+				8A85E0BB137EAA7A001A817C /* wcswidth.c in Sources */,
+				8A85E0BE137EAA94001A817C /* wcslcpy.c in Sources */,
+				8A85E0BF137EAA96001A817C /* wcslcat.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
