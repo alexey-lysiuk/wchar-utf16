@@ -370,6 +370,8 @@ vfwprintf(FILE * __restrict fp, const wchar_t * __restrict fmt0, va_list ap)
 #error "BUF must be large enough to format a uintmax_t"
 #endif
 
+size_t wcsnlen(const wchar_t *s, size_t maxlen);
+
 /*
  * Non-MT-safe version
  */
