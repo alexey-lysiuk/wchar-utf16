@@ -1,0 +1,19 @@
+
+ TODO List for WCHAR_UTF16 Library
+-----------------------------------
+
+* The wide character encoding in the current implementation is actually UCS-2 rather than UTF-16.
+  To make it the same as on Windows wide character conversion functions must be extended.
+
+* UTF-8 encoding is used for multibyte strings regardless of the locale settings.
+  The setlocale() function and its dependencies must be enabled for compilation.
+  However original source code from FreeBSD uses different locale data files (located in /usr/share/locale/ directory).
+  So these data files must be created using mklocale tool and corresponding locale sources from BSD distribution.
+  Also client code should set $PATH_LOCALE environment variable to proper directory.
+
+* Add exhaustive tests for each public function
+
+* Add x86_64 support.
+  
+* Add COPYING or LICENSE file
+
