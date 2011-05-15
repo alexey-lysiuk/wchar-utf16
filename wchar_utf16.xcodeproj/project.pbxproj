@@ -121,8 +121,6 @@
 		8A85E0BE137EAA94001A817C /* wcslcpy.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D3E13781E72001884EA /* wcslcpy.c */; };
 		8A85E0BF137EAA96001A817C /* wcslcat.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D3D13781E72001884EA /* wcslcat.c */; };
 		8AF0F886137E9F4A005FC4B3 /* mblen.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3C5E13781E72001884EA /* mblen.c */; };
-		8AF0F8E4137EA907005FC4B3 /* wcswidth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3D4A13781E72001884EA /* wcswidth.c */; };
-		8AF0F8E5137EA907005FC4B3 /* wcwidth.c in Sources */ = {isa = PBXBuildFile; fileRef = 8A2E3C8913781E72001884EA /* wcwidth.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -959,8 +957,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AF0F8E4137EA907005FC4B3 /* wcswidth.c in Sources */,
-				8AF0F8E5137EA907005FC4B3 /* wcwidth.c in Sources */,
 				8A1BB6D3137EB89400F03D76 /* unittest.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -982,6 +978,8 @@
 				8A2E3DA713782673001884EA /* mbstowcs.c in Sources */,
 				8A2E3DAC13782680001884EA /* mbtowc.c in Sources */,
 				8A2E3DAD137826B2001884EA /* utf8.c in Sources */,
+				8A85E0BB137EAA7A001A817C /* wcswidth.c in Sources */,
+				8A85E0A9137EA9DF001A817C /* wcwidth.c in Sources */,
 				8A2E3DAE137826B6001884EA /* wcrtomb.c in Sources */,
 				8A2E3DAF137826B6001884EA /* wcsftime.c in Sources */,
 				8A2E3DB0137826B7001884EA /* wcsnrtombs.c in Sources */,
@@ -1077,8 +1075,6 @@
 				8AF0F886137E9F4A005FC4B3 /* mblen.c in Sources */,
 				8A85E0A6137EA9C2001A817C /* nextwctype.c in Sources */,
 				8A85E0A7137EA9DD001A817C /* wctrans.c in Sources */,
-				8A85E0A9137EA9DF001A817C /* wcwidth.c in Sources */,
-				8A85E0BB137EAA7A001A817C /* wcswidth.c in Sources */,
 				8A85E0BE137EAA94001A817C /* wcslcpy.c in Sources */,
 				8A85E0BF137EAA96001A817C /* wcslcat.c in Sources */,
 			);
