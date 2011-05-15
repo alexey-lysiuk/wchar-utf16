@@ -462,6 +462,9 @@
 		8A2E3D5613781E99001884EA /* unittest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = unittest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2E3D7F137822D3001884EA /* isthreaded.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = isthreaded.c; sourceTree = "<group>"; };
 		8A6FDCC5137FB8B20069E5D3 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
+		8A6FDCF7137FC0390069E5D3 /* tst-sprintf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "tst-sprintf.c"; sourceTree = "<group>"; };
+		8A6FDCF8137FC0390069E5D3 /* tst-sprintf2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "tst-sprintf2.c"; sourceTree = "<group>"; };
+		8A6FDCF9137FC0390069E5D3 /* tst-swprintf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "tst-swprintf.c"; sourceTree = "<group>"; };
 		D2AAC046055464E500DB518D /* libwchar_utf16.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libwchar_utf16.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -871,6 +874,9 @@
 				8A1BB6D7137EB8A300F03D76 /* tst-btowc.c */,
 				8A1BB6D8137EB8A300F03D76 /* tst-mbrtowc.c */,
 				8A1BB6DA137EB8A300F03D76 /* tst-mbsrtowcs.c */,
+				8A6FDCF7137FC0390069E5D3 /* tst-sprintf.c */,
+				8A6FDCF8137FC0390069E5D3 /* tst-sprintf2.c */,
+				8A6FDCF9137FC0390069E5D3 /* tst-swprintf.c */,
 				8A1BB6DB137EB8A300F03D76 /* tst-wchar-h.c */,
 				8A1BB6DC137EB8A300F03D76 /* tst-wcpncpy.c */,
 				8A1BB6DD137EB8A300F03D76 /* tst-wcrtomb.c */,
