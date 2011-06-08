@@ -1,4 +1,4 @@
-build
-lib
+^build$
+^lib$
 wchar_utf16\.xcodeproj/.*\.mode1v3$
 wchar_utf16\.xcodeproj/.*\pbxuser$
