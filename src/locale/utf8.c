@@ -62,7 +62,6 @@ _UTF8_init(_RuneLocale *rl)
 	__mbsnrtowcs = _UTF8_mbsnrtowcs;
 	__wcsnrtombs = _UTF8_wcsnrtombs;
 	_CurrentRuneLocale = rl;
-	__mb_cur_max = 3;
 
 	return (0);
 }
@@ -419,3 +418,4 @@ _UTF8_wcrtomb;
 size_t (*__wcsnrtombs)(char * __restrict, const wchar_t ** __restrict,
 					   size_t, size_t, mbstate_t * __restrict) = _UTF8_wcsnrtombs;
 
+int __mb_cur_max = 3;

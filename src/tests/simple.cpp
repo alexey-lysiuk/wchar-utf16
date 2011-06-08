@@ -1,16 +1,6 @@
 
-#include <iostream>
-#include <sstream>
-
-
 int main (int argc, const char * argv[])
 {
-	std::wstringstream stream;
-	stream << "Is this wchar_t test? ";
-	stream << L"\u0414\u0430";
-	
-	std::wcout << stream.str() << std::endl;
-	
 	char cbuf[123];
 	snprintf( cbuf, 123, "%llu != %ls", 123456ULL, /*L"123456"*/ L"\u16A1\uFE62" );
 	puts( cbuf );
